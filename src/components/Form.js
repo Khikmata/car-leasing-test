@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import loadingIcon from '../assets/icons/Loading.svg';
 import tg from '../assets/icons/tg.svg';
 import wa from '../assets/icons/whatsapp.svg';
 import styles from '../styles/form.module.scss';
-
 
 const Form = ({ formOpen, setFormOpen }) => {
 
@@ -18,6 +18,11 @@ const Form = ({ formOpen, setFormOpen }) => {
 		const value = event.target.value;
 		const digitsOnly = value.replace(/\D/g, '');
 		const formatted = digitsOnly.replace(/^(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})$/, '+$1 ($2) $3 $4 $5');
+		if (formatted.length === 11) {
+			setPhoneValid(true)
+		} else {
+			setPhoneValid(false)
+		}
 		setPhone(formatted);
 	};
 
@@ -27,7 +32,7 @@ const Form = ({ formOpen, setFormOpen }) => {
 		setName(value);
 		const nameRegex = /^[a-zA-Z\u0400-\u04ff]+$/;
 		const isValid = nameRegex.test(value);
-		setNameError(!isValid);
+		setNameError(!isValid && nameValid);
 	};
 
 	const handlePhoneBlur = () => {
@@ -44,11 +49,16 @@ const Form = ({ formOpen, setFormOpen }) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		setPhone('');
-		setName('');
-		setNameError('');
-		setPhoneError('');
-		setFormOpen(false);
+		setIsLoading(true);
+		setTimeout(() => {
+			setIsLoading(false);
+			setPhone('');
+			setName('');
+			setNameError('');
+			setPhoneError('');
+			setFormOpen(false);
+		}, 2000);
+
 	};
 
 	const handleClose = () => {
@@ -59,6 +69,11 @@ const Form = ({ formOpen, setFormOpen }) => {
 		setFormOpen(false);
 	};
 
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleLoading = () => {
+
+	}
 
 
 	return (
@@ -73,7 +88,7 @@ const Form = ({ formOpen, setFormOpen }) => {
 							<label className={styles.form__phone} htmlFor="phone">
 								Телефон *
 							</label>
-							{(!phoneError && phone !== '') && <div className={styles.form__phone__valid}>✔</div>}
+							{(!phoneError && phoneValid && phone !== '') && <div className={styles.form__phone__valid}>✔</div>}
 							<input
 								required
 								maxLength={11}
@@ -116,8 +131,8 @@ const Form = ({ formOpen, setFormOpen }) => {
 						<p>
 							Нажимая на кнопку «Оставить заявку», я даю согласие <b> на обработку персональных данных </b>
 						</p>
-						<button className="filledorange" type="submit">
-							Оставить заявку
+						<button onClick={handleLoading} className="filledorange" type="submit">
+							{!isLoading ? 'Оставить заявку' : <Image className='loading' src={loadingIcon} alt={'Загрузка...'} />}
 						</button>
 					</div>
 				</form>

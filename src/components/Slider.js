@@ -62,6 +62,7 @@ const slides = [
 
 const Slider = ({ setFormOpen }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
@@ -75,7 +76,9 @@ const Slider = ({ setFormOpen }) => {
 	};
 
 	const handleNextClick = () => {
+		setIsLoading(true)
 		setCurrentIndex((currentIndex === slides.length - 1) ? currentIndex : currentIndex + 1);
+		setIsLoading(false)
 	};
 
 	const handleDotClick = (index) => {
@@ -109,7 +112,7 @@ const Slider = ({ setFormOpen }) => {
 						<Image width={24} height={24} src={arrowL} alt='Назад' />
 					</button>
 					<button disabled={currentIndex === slides.length - 1} onClick={handleNextClick} className={styles.slider__next}>
-						<Image width={8} height={48} src={arrowR} alt='Вперед' />
+						<Image width={26} height={26} src={arrowR} alt='Вперед' />
 					</button>
 				</div>
 				<div className={styles.slider__pagination}>
