@@ -1,0 +1,174 @@
+.form {
+	display: flex;
+	z-index: 200;
+	bottom: -1500px;
+	position: fixed;
+	width: 100%;
+	transition: all 0.7s ease-out;
+	height: 78vh;
+	background: rgb(255, 255, 255);
+	justify-content: center;
+	border-top-right-radius: 32px;
+	border-top-left-radius: 32px;
+	&.active {
+		transition: all 0.3s ease-out;
+		bottom: 0;
+		@media (max-width: 426px) {
+			height: 88vh;
+		}
+	}
+	&__title {
+		margin-bottom: 24px;
+		@media (max-width: 426px) {
+			margin-bottom: 16px;
+			font-weight: 900;
+			font-size: 22px;
+			line-height: 20px;
+		}
+	}
+	&__description {
+		margin-bottom: 44px;
+		max-width: 450px;
+		@media (max-width: 426px) {
+			margin-bottom: 32px;
+			font-style: normal;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 136%;
+			max-width: 230px;
+		}
+	}
+	&__close {
+		cursor: pointer;
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 48px;
+		width: 48px;
+		border-radius: 50%;
+		font-size: 24px;
+		line-height: 30px;
+		color: #828282;
+		background-color: #f3f3f4;
+		top: 48px;
+		right: 28px;
+		@media (max-width: 426px) {
+			width: 24px;
+			height: 24px;
+			top: 24px;
+		}
+	}
+	&__inputs {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 32px;
+		@media (max-width: 426px) {
+			margin-bottom: 0px;
+			flex-direction: column;
+		}
+		.input {
+			flex: 48%;
+			padding-right: 20px;
+			&:last-child {
+				padding-right: 0px;
+			}
+			@media (max-width: 426px) {
+				padding-right: 0px;
+			}
+		}
+		label {
+			font-family: "Gilroy";
+			font-style: normal;
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 12px;
+			position: absolute;
+			z-index: 200;
+			top: 10px;
+			left: 25px;
+		}
+	}
+	&__submit {
+		border: 2px solid #f3f3f4;
+		border-radius: 16px;
+		padding: 26px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		> p {
+			font-family: "Gilroy";
+			font-style: normal;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 150%;
+			max-width: 310px;
+			color: rgba(17, 17, 17, 0.5);
+			b {
+				font-family: "Gilroy";
+				font-style: normal;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 150%;
+				color: rgba(17, 17, 17, 1);
+			}
+		}
+		> button {
+			min-height: 48px;
+			max-width: 174px;
+			width: 100%;
+			@media (max-width: 426px) {
+				width: 100%;
+				max-width: 100%;
+			}
+		}
+		@media (max-width: 426px) {
+			button {
+				margin-bottom: 8px;
+				width: 100%;
+			}
+			p {
+				max-width: 260px;
+			}
+			padding: 0px;
+			border: none;
+			flex-direction: column-reverse;
+			text-align: center;
+		}
+	}
+}
+.container {
+	height: 70%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	padding: 160px 0;
+	max-width: 655px;
+	width: 100%;
+
+	@media (max-width: 769px) {
+		padding: 120px 36px;
+	}
+	@media (max-width: 426px) {
+		padding: 25px 20px;
+	}
+}
+.form__links {
+	margin-top: 32px;
+	display: flex;
+	justify-content: center;
+	@media (max-width: 426px) {
+		margin-top: 24px;
+	}
+	.form__link {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		border: 2px solid #f3f3f4;
+		margin-right: 16px;
+	}
+}

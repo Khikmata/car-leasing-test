@@ -1,0 +1,151 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Gilroy";
+}
+
+@font-face {
+  font-family: "Nekst";
+  src: local("Nekst Black"), local("Nekst-Black"), url("../fonts/Nekst/Nekst-Black.otf") format("truetype");
+  font-weight: 800;
+  font-style: bold;
+}
+@font-face {
+  font-family: "Nekst";
+  src: local("Nekst Regular"), local("Nekst-Regular"), url("../fonts/Nekst/Nekst-Regular.otf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.outlined {
+  &orange {
+    padding: 12px 24px;
+    border: 1px solid #ff9514;
+    color: #ff9514;
+    font-weight: 700;
+    &:hover {
+      background-color: #ff9514;
+      color: white;
+    }
+    &:active {
+      background-color: #ffa83d;
+      color: white;
+    }
+    &:disabled {
+      opacity: 0.4;
+    }
+    &.loading {
+      opacity: 0.4;
+    }
+  }
+}
+
+.filled {
+  &orange {
+    background-color: #ff9514;
+    color: white;
+    font-weight: 700;
+    &:hover {
+      background-color: #111111;
+    }
+    &:active {
+      background-color: #575757;
+    }
+    &:disabled {
+      opacity: 0.4;
+    }
+    &.loading {
+      opacity: 0.4;
+    }
+  }
+}
+p {
+  color: #575757;
+  font-size: 16px;
+}
+a {
+  color: #575757;
+  font-size: 16px;
+}
+h1 {
+  color: #ffffff;
+  font-size: 54px;
+}
+span {
+  color: #333333;
+  font-size: 54px;
+  line-height: 90%;
+  font-weight: 900;
+  font-family: "Nekst";
+}
+.forms__input {
+  position: relative;
+  border: 0px;
+  background-color: #f3f3f4;
+  border-radius: 16px;
+  height: 48px;
+  padding: 0 24px;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  width: 100%;
+  margin-right: 32px;
+  &::after {
+    z-index: 20000000;
+    position: absolute;
+    right: 0;
+
+    content: "✔";
+    width: 24px;
+    height: 24px;
+    background: green;
+    border-radius: 12px;
+  }
+  &:focus {
+    outline: 1px solid #ff9514;
+    border-radius: 16px;
+    background-color: #fff;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @media (max-width: 426px) {
+    flex: 100%;
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+  &.phone {
+    padding-top: 15px;
+    position: relative;
+  }
+}
+:disabled {
+  opacity: 0.5;
+  &.active {
+    background: none;
+  }
+}
+input::invalid {
+  outline: #d53234;
+}
