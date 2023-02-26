@@ -32,7 +32,7 @@ const Navbar = ({ setBurgerOpen, burgerOpen, setFormOpen, formOpen, }) => {
 	}
 
 	const dropdownRef = useRef();
-	const [isMenuDropDownOpen, setMenuDropDownOpen] = useState(true);
+	const [isMenuDropDownOpen, setMenuDropDownOpen] = useState(false);
 
 	const closeHoverMenu = () => {
 		setMenuDropDownOpen(false);
@@ -51,9 +51,9 @@ const Navbar = ({ setBurgerOpen, burgerOpen, setFormOpen, formOpen, }) => {
 			}
 			<div>
 				<ul className={burgerOpen ? [styles.list, styles.active].join(' ') : [styles.list]} >
-					<li className={styles.link}><a href=''>Лизинг</a></li>
-					<li className={styles.link}><a target="_blank">Каталог</a></li>
-					<li className={styles.link}><a target="_blank">О нас</a></li>
+					<li className={styles.link}><a href='' target="_blank">Лизинг</a></li>
+					<li className={styles.link}><a href='' target="_blank">Каталог</a></li>
+					<li className={styles.link}><a href='' target="_blank">О нас</a></li>
 				</ul>
 			</div>
 			<div className={styles.modalButton}>
