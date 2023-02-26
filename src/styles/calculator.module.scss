@@ -54,13 +54,7 @@
 			input::-webkit-inner-spin-button {
 				-webkit-appearance: none;
 			}
-			p {
-				font-family: "Nekst-Black";
-				font-style: normal;
-				font-weight: 900;
-				font-size: 22px;
-				line-height: 20px;
-			}
+
 			&__display {
 				padding: 0 20px;
 				width: 100%;
@@ -73,7 +67,13 @@
 				font-size: 22px;
 				line-height: 20px;
 			}
+
 			&__classificator {
+				font-family: "Nekst-Black";
+				font-style: normal;
+				font-weight: 900;
+				font-size: 30px;
+				line-height: 20px;
 				position: absolute;
 				right: 20px;
 				top: 35%;

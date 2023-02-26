@@ -15,6 +15,23 @@ const Calculator = ({ setFormOpen }) => {
 	const monthlyPrice = Math.round((costValue - (percentValueFormated * ((percentValue) / (1 + (percentValue)) - durationValue - 1))) / 100)
 	const contractSum = Math.round(percentValueFormated + (durationValue * monthlyPrice));
 
+
+
+	const formattedMonthlyPrice = (monthlyPrice.toLocaleString('ru-RU', {
+		useGrouping: true,
+		minimumFractionDigits: 0,
+		maximumFractionDigits: 0,
+		minimumIntegerDigits: 1,
+	})).replace(/,/g, ' ');
+	const formattedContractSum = (contractSum.toLocaleString('ru-RU', {
+		useGrouping: true,
+		minimumFractionDigits: 0,
+		maximumFractionDigits: 0,
+		minimumIntegerDigits: 1,
+	})).replace(/,/g, ' ');
+
+
+
 	const handleCostChange = (event) => {
 		setCostValue(event.target.value);
 	}
@@ -28,6 +45,7 @@ const Calculator = ({ setFormOpen }) => {
 
 	const handleCostBlur = (event) => {
 		const currentValue = event.target.value;
+
 		if (currentValue < 1000000) {
 			setCostValue(1000000);
 		} else if (currentValue > 6000000) {
@@ -86,7 +104,7 @@ const Calculator = ({ setFormOpen }) => {
 				<div className={styles.settings__item}>
 					<p>Первоначальный взнос</p>
 					<div className={styles.slider}>
-						<input className={styles.slider__display} onFocus={handleFocusChange} onBlur={handlePercentBlur} disabled type="number" value={percentValueFormated} />
+						<input className={styles.slider__display} onFocus={handleFocusChange} onBlur={handlePercentBlur} disabled type="type" value={percentValueFormated + ' ₽'} />
 						<input
 							disabled
 							type={'range'}
@@ -98,7 +116,7 @@ const Calculator = ({ setFormOpen }) => {
 							max={60}
 							style={{ '--value': percentValue, '--max': 50, '--min': 10 }}
 						/>
-						<p className={styles.slider__classificator + ' disabled'}>{percentValue}%</p>
+						<p style={{ fontSize: '20px', background: '#575757', borderRadius: '16px' }} className={[styles.slider__classificator + ' disabled ']}>{percentValue}%</p>
 					</div>
 				</div>
 				<div className={styles.settings__item}>
@@ -121,15 +139,15 @@ const Calculator = ({ setFormOpen }) => {
 			<div className={styles.price}>
 				<div className={styles.price__item}>
 					<p>Сумма договора лизинга</p>
-					<span>{contractSum} ₽</span>
+					<span>{formattedContractSum} ₽</span>
 				</div>
 				<div className={styles.price__item}>
 					<p>Ежемесячный платеж от</p>
-					<span>{monthlyPrice} ₽</span>
+					<span>{formattedMonthlyPrice} ₽</span>
 				</div>
 				<button onClick={handleSubmit} className={styles.price__item + ' filledorange'}>Оставить заявку</button>
 			</div>
-		</div>
+		</div >
 	)
 }
 
