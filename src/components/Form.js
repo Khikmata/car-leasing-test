@@ -32,7 +32,7 @@ const Form = ({ formOpen, setFormOpen }) => {
 		setName(value);
 		const nameRegex = /^[a-zA-Z\u0400-\u04ff]+$/;
 		const isValid = nameRegex.test(value);
-		setNameError(!isValid && nameValid);
+		setNameError(!isValid);
 	};
 
 	const handlePhoneBlur = () => {
