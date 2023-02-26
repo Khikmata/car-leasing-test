@@ -116,7 +116,7 @@ const Calculator = ({ setFormOpen }) => {
 							max={60}
 							style={{ '--value': percentValue, '--max': 50, '--min': 10 }}
 						/>
-						<p style={{ fontSize: '20px', background: '#575757', borderRadius: '16px' }} className={[styles.slider__classificator + ' disabled ']}>{percentValue}%</p>
+						<p style={{ fontSize: '20px' }} className={[styles.slider__classificator + ' disabled ']}>{percentValue}%</p>
 					</div>
 				</div>
 				<div className={styles.settings__item}>
