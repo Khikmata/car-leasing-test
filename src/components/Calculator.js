@@ -70,7 +70,7 @@ const Calculator = ({ setFormOpen }) => {
 				<div className={styles.settings__item}>
 					<p>Стоимость автомобиля</p>
 					<div className={styles.slider}>
-						<input className={styles.slider__display} onBlur={handleCostBlur} onChange={handleCostChange} type="type" value={costValue} />
+						<input className={styles.slider__display} onBlur={handleCostBlur} onChange={handleCostChange} type="number" value={costValue} />
 						<input
 							type={'range'}
 							className={styles.slider__track}
@@ -86,7 +86,7 @@ const Calculator = ({ setFormOpen }) => {
 				<div className={styles.settings__item}>
 					<p>Первоначальный взнос</p>
 					<div className={styles.slider}>
-						<input className={styles.slider__display} onFocus={handleFocusChange} onBlur={handlePercentBlur} disabled type="type" value={percentValueFormated} />
+						<input className={styles.slider__display} onFocus={handleFocusChange} onBlur={handlePercentBlur} disabled type="number" value={percentValueFormated} />
 						<input
 							disabled
 							type={'range'}
@@ -104,7 +104,7 @@ const Calculator = ({ setFormOpen }) => {
 				<div className={styles.settings__item}>
 					<p>Срок лизинга</p>
 					<div className={styles.slider}>
-						<input className={styles.slider__display} onBlur={handleDurationBlur} onChange={handleDurationChange} type="type" value={durationValue} />
+						<input className={styles.slider__display} onBlur={handleDurationBlur} onChange={handleDurationChange} type="number" value={durationValue} />
 						<input
 							type={'range'}
 							className={styles.slider__track}

@@ -44,6 +44,16 @@
 			height: 68px;
 			background-color: #f3f3f4;
 			border-radius: 16px;
+			input {
+				outline: none;
+			}
+			input[type="number"] {
+				-moz-appearance: textfield;
+			}
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+			}
 			p {
 				font-family: "Nekst-Black";
 				font-style: normal;
@@ -70,6 +80,10 @@
 			}
 			&:hover {
 				&__track::-webkit-slider-thumb {
+					width: 24px;
+					height: 24px;
+				}
+				&__track::-moz-range-thumb {
 					width: 24px;
 					height: 24px;
 				}
