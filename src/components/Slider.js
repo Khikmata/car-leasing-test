@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import arrowL from '../assets/icons/ArrowLeft.svg';
 import arrowR from '../assets/icons/ArrowRight.svg';
+import loading from '../assets/icons/Loading.svg';
 import image from '../assets/images/sliderBG.svg';
 import styles from '../styles/slider.module.scss';
 
@@ -38,28 +39,6 @@ const slides = [
 	},
 ];
 
-// slides.map((slide, index) => {
-// 	<>
-// 		<div className={styles.slider__content}>
-// 			<h1 className={styles.slider__title}>
-// 				{slide.title}
-// 			</h1>
-// 			<p className={styles.slider__description}>{slide.description}</p>
-// 			<button onClick={() => setFormOpen(true)} className='button filledorange' type='button'>Оставить заявку</button>
-// 		</div>
-// 		<div className={styles.slider__image_container}>
-// 			<Image
-// 				priority={true}
-// 				key={index}
-// 				className={`${styles.slider__image} ${currentIndex === index ? styles.active : ''}`}
-// 				src={image.src}
-// 				alt={`slide-${index}`}
-// 			/>
-// 		</div>
-// 	</>
-// })
-
-
 const Slider = ({ setFormOpen }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isLoading, setIsLoading] = useState(false);
@@ -77,13 +56,17 @@ const Slider = ({ setFormOpen }) => {
 
 	const handleNextClick = () => {
 		setIsLoading(true)
-		setCurrentIndex((currentIndex === slides.length - 1) ? currentIndex : currentIndex + 1);
-		setIsLoading(false)
+		setTimeout(() => {
+			setCurrentIndex((currentIndex === slides.length - 1) ? currentIndex : currentIndex + 1);
+			setIsLoading(false)
+		}, 1000)
 	};
 
 	const handleDotClick = (index) => {
 		setCurrentIndex(index);
 	};
+
+
 
 	return (
 		<div className={styles.slider}>
@@ -109,10 +92,11 @@ const Slider = ({ setFormOpen }) => {
 			<div className={styles.slider__nav}>
 				<div className={styles.slider__buttons}>
 					<button disabled={currentIndex === 0} onClick={handlePrevClick} className={styles.slider__prev}>
-						<Image width={24} height={24} src={arrowL} alt='Назад' />
+						<Image src={arrowL} alt='Назад' />
 					</button>
 					<button disabled={currentIndex === slides.length - 1} onClick={handleNextClick} className={styles.slider__next}>
-						<Image width={26} height={26} src={arrowR} alt='Вперед' />
+						{!isLoading ? <Image src={arrowR} className={styles.slider__next__arrow} alt='Вперед' /> : <Image className={styles.slider__next__loading} src={loading} alt={'Загрузка...'} />}
+						<div className={styles.slider__next__border}></div>
 					</button>
 				</div>
 				<div className={styles.slider__pagination}>

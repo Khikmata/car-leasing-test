@@ -70,9 +70,6 @@ button {
     &:disabled {
       opacity: 0.4;
     }
-    &.loading {
-      opacity: 0.4;
-    }
   }
 }
 
@@ -88,9 +85,6 @@ button {
       background-color: #575757;
     }
     &:disabled {
-      opacity: 0.4;
-    }
-    &.loading {
       opacity: 0.4;
     }
   }
