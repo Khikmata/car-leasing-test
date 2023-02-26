@@ -69,25 +69,17 @@
 			flex-direction: column;
 		}
 		.input {
+			position: relative;
 			flex: 48%;
 			padding-right: 20px;
+			width: 100%;
+			height: 100%;
 			&:last-child {
 				padding-right: 0px;
 			}
 			@media (max-width: 426px) {
 				padding-right: 0px;
 			}
-		}
-		label {
-			font-family: "Gilroy";
-			font-style: normal;
-			font-weight: 400;
-			font-size: 12px;
-			line-height: 12px;
-			position: absolute;
-			z-index: 200;
-			top: 10px;
-			left: 25px;
 		}
 	}
 	&__submit {
@@ -171,4 +163,46 @@
 		border: 2px solid #f3f3f4;
 		margin-right: 16px;
 	}
+}
+.form__phone {
+	font-family: "Gilroy";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 12px;
+	position: absolute;
+	z-index: 200;
+	top: 10px;
+	left: 25px;
+}
+.form__phone__valid {
+	position: absolute;
+	z-index: 100;
+	width: 24px;
+	height: 24px;
+	right: 36px;
+	top: 13px;
+	background: #77de8d;
+	border-radius: 8px;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@media (max-width: 426px) {
+		right: 20px;
+	}
+}
+.form__name__valid {
+	position: absolute;
+	z-index: 100;
+	width: 24px;
+	height: 24px;
+	right: 20px;
+	top: 13px;
+	background: #77de8d;
+	border-radius: 8px;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

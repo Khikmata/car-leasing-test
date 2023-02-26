@@ -110,6 +110,7 @@ span {
   line-height: 16px;
   width: 100%;
   margin-right: 32px;
+
   &::after {
     z-index: 20000000;
     position: absolute;
@@ -122,8 +123,9 @@ span {
     border-radius: 12px;
   }
   &:focus {
-    outline: 1px solid #ff9514;
+    outline: 4px solid rgba(255, 149, 20, 0.2);
     border-radius: 16px;
+    border: 1px solid rgba(255, 149, 20);
     background-color: #fff;
   }
   &:last-child {
@@ -142,10 +144,7 @@ span {
 }
 :disabled {
   opacity: 0.5;
-  &.active {
-    background: none;
-  }
 }
-input::invalid {
-  outline: #d53234;
+.error {
+  outline: 1px solid #d53234;
 }

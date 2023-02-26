@@ -1,13 +1,14 @@
 
+import { useOnHoverOutside } from '@/hooks/useOnHoverOutside';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import logoblack from '.././assets/icons/logoblack.svg';
 import logowhite from '.././assets/icons/logowhite.svg';
 import styles from '../styles/navbar.module.scss';
 
 
-const Navbar = ({ setBurgerOpen, burgerOpen, setFormOpen, formOpen, setDropdownOpen, dropdownOpen }) => {
+const Navbar = ({ setBurgerOpen, burgerOpen, setFormOpen, formOpen, }) => {
 
 
 	const [scrollY, setScrollY] = useState(0);
@@ -30,11 +31,14 @@ const Navbar = ({ setBurgerOpen, burgerOpen, setFormOpen, formOpen, setDropdownO
 		setFormOpen(true);
 	}
 
-	const handleDropdown = (e) => {
-		setDropdownOpen(true);
-		e.stopPropagation();
-	}
+	const dropdownRef = useRef();
+	const [isMenuDropDownOpen, setMenuDropDownOpen] = useState(true);
 
+	const closeHoverMenu = () => {
+		setMenuDropDownOpen(false);
+	};
+
+	useOnHoverOutside(dropdownRef, closeHoverMenu);
 	const isMobile = useMediaQuery({ query: `(max-width: 426px)` });
 
 	return (<>
@@ -56,7 +60,7 @@ const Navbar = ({ setBurgerOpen, burgerOpen, setFormOpen, formOpen, setDropdownO
 				<button onClick={handleForm} className='button filledorange' type='button'>Оставить заявку</button>
 			</div>
 		</div>
-		<div className={styles.navbar}>
+		<div ref={dropdownRef} className={styles.navbar}>
 			<div className={scrollY > 0 ? [styles.container, styles.active].join(' ') : [styles.container]}>
 				<div className={styles.content}>
 					<div className={styles.leftside}>
@@ -67,17 +71,18 @@ const Navbar = ({ setBurgerOpen, burgerOpen, setFormOpen, formOpen, setDropdownO
 						<div className={styles.pc}>
 							<nav>
 								<ul className={styles.list}>
-									<li onMouseOver={handleDropdown} className={styles.link}>
+									<li onMouseOver={() => setMenuDropDownOpen(true)} className={styles.link}>
 										<a href='#' target="_blank">Лизинг</a>
 									</li>
 									<li className={styles.link}><a href='#' target="_blank">Каталог</a></li>
 									<li className={styles.link}><a href='#' target="_blank">О нас</a></li>
 								</ul>
-								<ul className={dropdownOpen ? [styles.leasing__dropdown, styles.active].join(' ') : [styles.leasing__dropdown]}>
-									<li href="#">Для личного использования</li>
-									<li href="#">Для юридических диц</li>
-									<li href="#">Калькулятор</li>
-								</ul>
+								{isMenuDropDownOpen &&
+									<ul className={isMenuDropDownOpen ? [styles.leasing__dropdown, styles.active].join(' ') : [styles.leasing__dropdown]}>
+										<li href="#">Для личного использования</li>
+										<li href="#">Для юридических диц</li>
+										<li href="#">Калькулятор</li>
+									</ul>}
 							</nav>
 							<button onClick={handleForm} className='button outlinedorange' type='button'>Оставить заявку</button>
 						</div>

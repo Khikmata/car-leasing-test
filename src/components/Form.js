@@ -11,6 +11,8 @@ const Form = ({ formOpen, setFormOpen }) => {
 	const [name, setName] = useState('');
 	const [phoneError, setPhoneError] = useState(false);
 	const [nameError, setNameError] = useState(false);
+	const [phoneValid, setPhoneValid] = useState(false);
+	const [nameValid, setNameValid] = useState(false);
 
 	const handlePhoneChange = (event) => {
 		const value = event.target.value;
@@ -30,7 +32,13 @@ const Form = ({ formOpen, setFormOpen }) => {
 
 	const handlePhoneBlur = () => {
 		const phoneRegex = /^\+\d{1}\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}$/;
-		const isValid = phoneRegex.test(phone);
+		let isValid = phoneRegex.test(phone);
+		if (phone === '') {
+			isValid = true;
+		}
+		if (isValid) {
+			setPhoneValid(true);
+		}
 		setPhoneError(!isValid);
 	};
 
@@ -65,13 +73,14 @@ const Form = ({ formOpen, setFormOpen }) => {
 							<label className={styles.form__phone} htmlFor="phone">
 								Телефон *
 							</label>
+							{(!phoneError && phone !== '') && <div className={styles.form__phone__valid}>✔</div>}
 							<input
 								required
 								maxLength={11}
 								minLength={11}
 								type="tel"
 								placeholder="+7 (234) 567 22 33"
-								className="forms__input phone"
+								className={`forms__input phone ${phoneError ? 'error' : ''}`}
 								name="phone"
 								value={phone}
 								onChange={handlePhoneChange}
@@ -84,9 +93,10 @@ const Form = ({ formOpen, setFormOpen }) => {
 							)}
 						</div>
 						<div className={styles.input}>
+							{(!nameError && name !== '') && <div className={styles.form__name__valid}>✔</div>}
 							<input
 								placeholder="Имя"
-								className="forms__input"
+								className={`forms__input ${nameError ? 'error' : ''}`}
 								required
 								maxLength={16}
 								minLength={2}

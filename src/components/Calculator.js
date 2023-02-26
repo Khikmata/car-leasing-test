@@ -11,7 +11,7 @@ const Calculator = ({ setFormOpen }) => {
 	const [durationValue, setDurationValue] = useState(1);
 
 
-	const percentValueFormated = Math.round(percentValue * costValue / 100);
+	let percentValueFormated = Math.round(percentValue * costValue / 100);
 	const monthlyPrice = Math.round((costValue - (percentValueFormated * ((percentValue) / (1 + (percentValue)) - durationValue - 1))) / 100)
 	const contractSum = Math.round(percentValueFormated + (durationValue * monthlyPrice));
 
@@ -52,7 +52,10 @@ const Calculator = ({ setFormOpen }) => {
 			setDurationValue(60);
 		}
 	}
-
+	const handleFocusChange = () => {
+		percentValueFormated = 0;
+		setPercentValue(10)
+	}
 
 	const handleSubmit = () => {
 		setFormOpen(true);
@@ -67,7 +70,7 @@ const Calculator = ({ setFormOpen }) => {
 				<div className={styles.settings__item}>
 					<p>Стоимость автомобиля</p>
 					<div className={styles.slider}>
-						<input className={styles.slider__display} onBlur={handleCostBlur} onChange={(e) => setCostValue(e.target.value)} type="type" value={costValue} />
+						<input className={styles.slider__display} onBlur={handleCostBlur} onChange={handleCostChange} type="type" value={costValue} />
 						<input
 							type={'range'}
 							className={styles.slider__track}
@@ -83,8 +86,9 @@ const Calculator = ({ setFormOpen }) => {
 				<div className={styles.settings__item}>
 					<p>Первоначальный взнос</p>
 					<div className={styles.slider}>
-						<input className={styles.slider__display} onBlur={handlePercentBlur} onChange={(e) => percentValueFormated + e} type="type" value={percentValueFormated} />
+						<input className={styles.slider__display} onFocus={handleFocusChange} onBlur={handlePercentBlur} disabled type="type" value={percentValueFormated} />
 						<input
+							disabled
 							type={'range'}
 							className={styles.slider__track}
 							value={percentValue}
